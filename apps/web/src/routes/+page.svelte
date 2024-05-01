@@ -2,7 +2,7 @@
 	import { Button } from '$lib/components/ui/button';
 </script>
 
-<section class="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+<section class="w-full py-6 md:py-12 lg:py-24 xl:py-32">
 	<div class="container px-4 md:px-6">
 		<div class="grid gap-6 lg:grid-cols-[1fr_550px] lg:gap-12 xl:grid-cols-[1fr_650px]">
 			<div class="space-y- flex flex-col justify-center space-y-4">
@@ -239,4 +239,3 @@
 		</div>
 	</div>
 </section>
-

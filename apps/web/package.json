@@ -36,7 +36,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"bits-ui": "^0.21.6",
 		"clsx": "^2.1.1",
+		"pocketbase": "^0.21.2",
 		"tailwind-merge": "^2.3.0",
 		"tailwind-variants": "^0.2.1"
 	}

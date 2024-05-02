@@ -7,7 +7,7 @@
 >
 	<a href="/" class="text-3xl font-bold">Knowa</a>
 	<nav>
-		<Button href="/">Login</Button>
+		<Button href="/login">Login</Button>
 		<Button variant="ghost" href="/register">Register</Button>
 	</nav>
 </header>

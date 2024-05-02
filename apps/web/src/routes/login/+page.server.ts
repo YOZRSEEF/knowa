@@ -1,9 +1,8 @@
 import type { PageServerLoad, Actions } from "./$types.js";
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 import { formSchema } from "./schema";
-import { generateUsername } from "$lib/utils.js";
 
 export const load: PageServerLoad = async () => {
     return {
@@ -12,7 +11,7 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-    register: async (event) => {
+    login: async (event) => {
         const form = await superValidate(event, zod(formSchema));
         if (!form.valid) {
             return fail(400, {
@@ -20,19 +19,14 @@ export const actions: Actions = {
             });
         }
         try {
-            const username = generateUsername(form.data.name.split(' ').join('')).toLowerCase()
-            await event.locals.pb.collection('users').create({
-                username: username,
-                name: form.data.name,
-                email: form.data.email,
-                password: form.data.password,
-                passwordConfirm: form.data.confirmPassword
-            })
-            // TODO : Add email verification
-            // await event.locals.pb.collection('users').requestVerification(form.data.email)
-            return {
-                form,
-            };
+            await event.locals.pb.collection("users").authWithPassword(
+                form.data.email,
+                form.data.password
+            )
+            if (!event.locals.pb.authStore.model.verified) {
+                // TODO: add email verification first 
+            }
+
         } catch (err) {
             // TODO: Handle the Error
             console.log("Error creating user", err);
@@ -40,5 +34,7 @@ export const actions: Actions = {
                 form,
             });
         }
+        // TODO: replace the landing page with the app
+        throw redirect(303, "/")
     },
 };

@@ -25,22 +25,14 @@
 <div class="flex items-center justify-center p-6 md:p-10">
 	<div class="w-full max-w-md space-y-6">
 		<div class="space-y-2 text-center">
-			<h1 class="text-3xl font-bold">Create an account</h1>
+			<h1 class="text-3xl font-bold">Welcome back</h1>
 			<p class="text-gray-500 dark:text-gray-400">
-				Already have an account?{' '}
-				<a class="underline" href="/login"> Login </a>
+				Don't have an account yet?{' '}
+				<a class="underline" href="/register"> Sign up </a>
 			</p>
 		</div>
 
-		<form action="?/register" method="POST" use:enhance class="space-y-4">
-			<Form.Field {form} name="name">
-				<Form.Control let:attrs>
-					<Form.Label>Name</Form.Label>
-					<Input {...attrs} bind:value={$formData.name} placeholder="Joe Mama" />
-				</Form.Control>
-				<Form.FieldErrors />
-			</Form.Field>
-
+		<form action="?/login" method="POST" use:enhance class="space-y-4">
 			<Form.Field {form} name="email">
 				<Form.Control let:attrs>
 					<Form.Label>Email</Form.Label>
@@ -57,15 +49,7 @@
 				<Form.FieldErrors />
 			</Form.Field>
 
-			<Form.Field {form} name="confirmPassword">
-				<Form.Control let:attrs>
-					<Form.Label>Confirm Password</Form.Label>
-					<Input type="password" {...attrs} bind:value={$formData.confirmPassword} />
-				</Form.Control>
-				<Form.FieldErrors />
-			</Form.Field>
-
-			<Form.Button class="w-full">Sign up</Form.Button>
+			<Form.Button class="w-full">Login</Form.Button>
 		</form>
 	</div>
 </div>
